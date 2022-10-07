@@ -1,0 +1,13 @@
+.CardsList {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 16px;
+  padding: 16px;
+  max-width: 1536px;
+  margin: 0 auto;
+
+  @media (min-width: 768px) {
+    grid-template-columns: auto auto auto;
+    gap: 24px;
+  }
+}

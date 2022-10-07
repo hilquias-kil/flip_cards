@@ -1,7 +1,9 @@
+import './{{capitalize componentName}}.styles.scss';
+
 import { {{capitalize componentName}}Props } from './interfaces' 
 
 export const {{capitalize componentName}} = ({ testId = '{{kebabCase componentName}}-id', ...props } : {{capitalize componentName}}Props) => { return (
-  <div data-testid='{testId}' className="{{capitalize componentName}}" {...props}>
+  <div data-testid={testId} className="{{capitalize componentName}}" {...props}>
     Hello {{capitalize componentName}}!
   </div>
 ) }

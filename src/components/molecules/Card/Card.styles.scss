@@ -1,0 +1,170 @@
+.card {
+  perspective: 1000px;
+
+  &:hover .card__inner {
+    transform: rotateY(180deg);
+  }
+
+  .card__inner {
+    border: 5px solid #000;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    min-height: 600px;
+    will-change: transform;
+    height: 100%;
+
+    @media (min-width: 768px) {
+      min-height: 800px;
+    }
+  }
+
+  .card__front {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card__front,
+  .card__back {
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .card__back {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: rotateY(180deg);
+  }
+
+  .card__flag {
+    position: absolute;
+    right: -125px;
+    top: -55px;
+    background-color: #000;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-style: italic;
+    width: 250px;
+    text-align: center;
+    transform: rotate(45deg);
+    transform-origin: top left;
+    padding: 5px 0;
+    font-size: 16px;
+
+    @media (min-width: 768px) {
+      font-size: 24px;
+      right: -110px;
+      top: -35px;
+    }
+  }
+
+  .card__image {
+    width: 100%;
+    object-fit: cover;
+    height: 160px;
+
+    &.flipped {
+      transform: rotateY(180deg);
+      opacity: 0.5;
+    }
+
+    @media (min-width: 768px) {
+      height: 240px;
+    }
+  }
+
+  .card__text {
+    padding: 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 768px) {
+      padding: 18px;
+    }
+  }
+
+  .card__title {
+    font-size: 20px;
+    text-align: center;
+    margin: 0 0 18px;
+
+    @media (min-width: 768px) {
+      font-size: 24px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 36px;
+    }
+  }
+
+  .card__description {
+    font-size: 12px;
+    margin: 0;
+
+    @media (min-width: 768px) {
+      font-size: 16px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 20px;
+    }
+  }
+
+  .card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    flex-grow: 1;
+    align-content: flex-start;
+
+    @media (min-width: 768px) {
+      gap: 16px;
+    }
+  }
+
+  .card__tag {
+    background-color: #000;
+    color: #fff;
+    padding: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+
+    @media (min-width: 768px) {
+      font-size: 20px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 24px;
+    }
+  }
+
+  .card__link {
+    color: #000;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 16px;
+    align-self: end;
+    display: flex;
+    align-content: center;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 24px;
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+}
