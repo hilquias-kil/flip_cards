@@ -1,13 +1,16 @@
-.CardsList {
-  display: grid;
-  grid-template-columns: auto auto;
-  gap: 16px;
+.cards {
   padding: 16px;
   max-width: 1536px;
   margin: 0 auto;
 
-  @media (min-width: 768px) {
-    grid-template-columns: auto auto auto;
-    gap: 24px;
+  .cards_list {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 16px;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+    }
   }
 }
