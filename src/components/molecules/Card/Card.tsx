@@ -1,8 +1,10 @@
 import './Card.styles.scss';
 
-import { ChevronRight } from '../../../assets/icons/ChevronRight';
-import { CardProps } from './interfaces';
+import { useMediaQuery } from 'react-responsive';
 
+import { ChevronRight } from '../../../assets/icons/ChevronRight';
+import { truncateString } from '../../../utils/truncateString';
+import { CardProps } from './interfaces';
 
 export const Card = ({
   testId = 'card-id',
@@ -17,6 +19,11 @@ export const Card = ({
   const splitTitle = title.split(':');
   const primaryTitle = splitTitle[1] ? splitTitle[1] : splitTitle[0];
   const secondaryTitle = splitTitle[0];
+
+  const isMobile = useMediaQuery({
+    query: '(max-device-width: 640px)',
+  });
+
   return (
     <div data-testid={testId} className="card" {...props}>
       <div className="card__inner">
@@ -25,7 +32,9 @@ export const Card = ({
           <img src={image} className="card__image" alt={title} width={540} height={240} />
           <div className="card__text">
             <h2 className="card__title">{primaryTitle}</h2>
-            <p className="card__description">{description}</p>
+            <p className="card__description">
+              {truncateString(description, isMobile ? 100 : 372)}
+            </p>
           </div>
         </div>
         <div className="card__back">
