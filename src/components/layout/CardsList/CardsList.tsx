@@ -2,9 +2,10 @@ import './CardsList.styles.scss';
 
 import { useEffect, useState } from 'react';
 
+import { getCards } from '../../../api/getCards';
 import { Card } from '../../molecules/Card';
 import { Filter } from '../../molecules/Filter';
-import { CardsListProps, ICard, ICardList } from './interfaces';
+import { CardsListProps, ICard } from './interfaces';
 
 const getTags = (cards: ICard[]) => {
   const tags: string[] = [];
@@ -42,12 +43,20 @@ export const CardsList = ({ testId = 'cards-list-id', ...props }: CardsListProps
   };
 
   useEffect(() => {
-    fetch('/data.json')
-      .then((res) => res.json())
-      .then((data: ICardList) => {
-        setCards(data.cards);
-        setTags(getTags(data.cards));
-      });
+    let mounted = true;
+    const fetchData = async () => {
+      const data = await getCards();
+      const cards = data.cards;
+      if (mounted) {
+        setCards(cards);
+        setTags(getTags(cards));
+      }
+    };
+
+    fetchData();
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   return (
