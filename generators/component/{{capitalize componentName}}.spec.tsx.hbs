@@ -12,7 +12,7 @@ describe('<{{capitalize componentName}} />', () => {
 	const testId = 'component-{{kebabCase componentName}}-id'
 
 	it('should render the {{capitalize componentName}}', async () => {
-		const { container } = render(<{{capitalize componentName}} testId={testId}>Test</Heading>);
+		const { container } = render(<{{capitalize componentName}} testId={testId}>Test</{{capitalize componentName}}>);
 		expect(screen.getByText('Test')).toBeInTheDocument();
 
 		const acessibilityResults = await axe(container);
