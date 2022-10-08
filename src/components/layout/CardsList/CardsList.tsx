@@ -5,25 +5,15 @@ import { useEffect, useState } from 'react';
 import { getCards } from '../../../api/getCards';
 import { Card } from '../../molecules/Card';
 import { Filter } from '../../molecules/Filter';
+import { getTags } from './helpers/getTags';
 import { CardsListProps, ICard } from './interfaces';
-
-const getTags = (cards: ICard[]) => {
-  const tags: string[] = [];
-  cards.forEach((card) => {
-    card.tags.forEach((tag) => {
-      if (!tags.includes(tag)) tags.push(tag);
-    });
-  });
-
-  return tags.sort();
-};
 
 export const CardsList = ({ testId = 'cards-list-id', ...props }: CardsListProps) => {
   const [cards, setCards] = useState<ICard[]>([]);
   const [tags, setTags] = useState<string[]>([]);
   const [filter, setFilter] = useState<string[]>([]);
 
-  const onFilter = (tag: string) => {
+  const addFilter = (tag: string) => {
     const temp = [...filter];
     temp.push(tag);
     setFilter(temp);
@@ -64,7 +54,7 @@ export const CardsList = ({ testId = 'cards-list-id', ...props }: CardsListProps
       <div className="cards_filter">
         <Filter
           tags={tags}
-          setFilter={(tag) => onFilter(tag)}
+          setFilter={(tag) => addFilter(tag)}
           filter={filter}
           removeFilter={(tag) => removeFilter(tag)}
         />
