@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import './Filter.styles.scss';
 
 import { useState } from 'react';
@@ -15,14 +16,15 @@ export const Filter = ({
   ...props
 }: FilterProps) => {
   const isMobile = useMediaQuery({
-    query: '(max-device-width: 640px)',
+    query: '(max-width: 640px)',
   });
   const [open, setOpen] = useState<boolean>(false);
 
   return (
     <div data-testid={testId} className="filter" {...props}>
       {isMobile && (
-        <div className="filter__select">
+        // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+        <div className="filter__select" onClick={() => setOpen(!open)}>
           {filter.length ? (
             filter.map((tag) => (
               <button

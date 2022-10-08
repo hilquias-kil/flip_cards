@@ -1,6 +1,5 @@
 .filter {
   display: flex;
-  gap: 10px;
   margin-bottom: 40px;
   flex-direction: column;
 
@@ -14,6 +13,7 @@
     flex-wrap: wrap;
     gap: 10px;
     border: 2px solid black;
+    border-bottom: 0;
     padding: 10px;
     position: relative;
 
@@ -42,9 +42,13 @@
     flex-direction: column;
     overflow: hidden;
     height: 0;
+    border: 2px solid black;
+    border-top: 0;
+    transition: height .3s ease-in-out;
 
     &.open {
-      height: fit-content;
+      height: 300px;
+      overflow: auto;
     }
 
     @media (min-width: 640px) {
